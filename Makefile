@@ -1,5 +1,5 @@
 # Ingredients
-TARGET        := microbit
+TARGET        := firmware
 
 # Architecture
 CPU           := cortex-m4
@@ -23,22 +23,26 @@ INC_FOLDER    := include\
 INCLUDES      := $(addprefix -I, $(INC_FOLDER))
 
 LIBNAME       := opencm3_nrf52
-LDLIBS        := -L$(OPENCM3_DIR)/lib -l$(LIBNAME)
+LDLIBS        := -L$(OPENCM3_DIR)/lib -l$(LIBNAME) -lc -lgcc -lnosys
 
 # Tools
 WARNINGS      := -Wall -Wextra -Werror
 CC            := arm-none-eabi-gcc
 CFLAGS        := $(ARCH_FLAGS) -std=gnu11 -O0 -c $(WARNINGS) $(INCLUDES)
 
-LD            := arm-none-eabi-ld
-LDFLAGS       := -T microbit_ls.ld -Map=$(TARGET).map
+LDSCRIPT      := microbit_ls.ld
+# LDSCRIPT      := microbit_libopencm3_ls.ld
+LD            := arm-none-eabi-gcc
+LDFLAGS       := $(ARCH_FLAGS) -nostartfiles -T $(LDSCRIPT) -Wl,-Map=$(TARGET).map
 
 OBJCOPY       := arm-none-eabi-objcopy
 
 # Sources
 SRCS          := \
 								 main.c\
-								 startup.c
+								 gpio.c
+SRCS           += startup.c
+
 OBJS          := $(SRCS:.c=.o)
 SRCS          := $(addprefix $(SRC_FOLDER)/, $(SRCS))
 OBJS          := $(addprefix $(OBJ_FOLDER)/, $(OBJS))

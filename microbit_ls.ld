@@ -12,7 +12,7 @@ SECTIONS
 {
   .text :
   {
-    *(.isr_vector)
+    KEEP(*(.isr_vector))
     *(.text*)
     *(.rodata*)
     . = ALIGN(4);
