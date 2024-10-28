@@ -1,0 +1,6 @@
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 120
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBraces: Attach
+AlignAfterOpenBracket: BlockIndent

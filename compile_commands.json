@@ -1,0 +1,44 @@
+[
+ {
+  "directory": "/Users/romeo/personal/baremetal/microbit",
+  "arguments": [
+   "arm-none-eabi-gcc",
+   "-march=armv7e-m",
+   "-mcpu=cortex-m4",
+   "-mthumb",
+   "-std=gnu11",
+   "-O0",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iinclude",
+   "-Iexternal/libopencm3/include",
+   "src/main.c",
+   "-o",
+   "build/obj/main.o"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/Users/romeo/personal/baremetal/microbit",
+  "arguments": [
+   "arm-none-eabi-gcc",
+   "-march=armv7e-m",
+   "-mcpu=cortex-m4",
+   "-mthumb",
+   "-std=gnu11",
+   "-O0",
+   "-c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iinclude",
+   "-Iexternal/libopencm3/include",
+   "src/startup.c",
+   "-o",
+   "build/obj/startup.o"
+  ],
+  "file": "src/startup.c"
+ }
+]
