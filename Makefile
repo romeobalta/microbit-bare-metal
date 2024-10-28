@@ -1,34 +1,41 @@
 # Ingredients
+TARGET        := microbit
 
-TARGET        := microbit.elf
-
+# Architecture
 CPU           := cortex-m4
 ARCH          := armv7e-m
+FPU           := fpv4-sp-d16
+FLOAT_ABI     := hard
+ARCH_FLAGS    := -mcpu=$(CPU) -march=$(ARCH) -mthumb -mfloat-abi=$(FLOAT_ABI) -mfpu=$(FPU)
 
-
-OPENCM3_DIR   := external/libopencm3
-
-INC_FOLDER    := include\
-									$(OPENCM3_DIR)/include\
-
+# Paths
 SRC_FOLDER    := src
 BUILD_FOLDER  := build
 OBJ_FOLDER    := $(BUILD_FOLDER)/obj
 BIN_FOLDER    := $(BUILD_FOLDER)/bin
 
 TARGET        := $(BIN_FOLDER)/$(TARGET)
-HEX_TARGET    := $(TARGET:.elf=.hex)
 
+# Libraries
+OPENCM3_DIR   := external/libopencm3
+INC_FOLDER    := include\
+									$(OPENCM3_DIR)/include
+INCLUDES      := $(addprefix -I, $(INC_FOLDER))
+
+LIBNAME       := opencm3_nrf52
+LDLIBS        := -L$(OPENCM3_DIR)/lib -l$(LIBNAME)
+
+# Tools
+WARNINGS      := -Wall -Wextra -Werror
 CC            := arm-none-eabi-gcc
-CFLAGS        := -march=$(ARCH) -mcpu=$(CPU) -mthumb -std=gnu11 -O0 -c -Wall -Wextra -Werror $(addprefix -I, $(INC_FOLDER))
-LDFLAGS       := -nostdlib -T microbit_ls.ld -Wl,-Map=$(TARGET:.elf=.map) $(addprefix -I, $(INC_FOLDER))
+CFLAGS        := $(ARCH_FLAGS) -std=gnu11 -O0 -c $(WARNINGS) $(INCLUDES)
 
+LD            := arm-none-eabi-ld
+LDFLAGS       := -T microbit_ls.ld -Map=$(TARGET).map
 
-LIBNAME       = opencm3_nrf52
-LDLIBS        += -l$(LIBNAME)
-LDFLAGS       += -L$(OPENCM3_DIR)/lib
+OBJCOPY       := arm-none-eabi-objcopy
 
-
+# Sources
 SRCS          := \
 								 main.c\
 								 startup.c
@@ -37,20 +44,19 @@ SRCS          := $(addprefix $(SRC_FOLDER)/, $(SRCS))
 OBJS          := $(addprefix $(OBJ_FOLDER)/, $(OBJS))
 
 # Util
-
 RM            := rm -rf
 DIR_CREATE    = mkdir -p $(@D)
 
-# Recipe
+# Recipes
+all: $(TARGET).hex
 
-all: $(HEX_TARGET)
-
-$(HEX_TARGET): $(TARGET)
-	arm-none-eabi-objcopy -O ihex $< $@
-
-$(TARGET): $(OBJS)
+$(TARGET).hex: $(TARGET).elf
 	$(DIR_CREATE)
-	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	$(OBJCOPY) -O ihex $< $@
+
+$(TARGET).elf: $(OBJS)
+	$(DIR_CREATE)
+	$(LD) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 	$(DIR_CREATE)
@@ -59,7 +65,7 @@ $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.c
 clean:
 	$(RM) $(BUILD_FOLDER)
 
-flash: $(HEX_TARGET)
+flash: $(TARGET).hex
 	cp $< /Volumes/MICROBIT/
 
 re:
