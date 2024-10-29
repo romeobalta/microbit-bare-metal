@@ -9,121 +9,120 @@ extern uint32_t _ebss;
 
 int main(void);
 
-void Reset_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void NMI_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void HardFault_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void Test_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void MemManage_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void Bus_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void Usage_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void SVCall_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void DebugMonitor_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void PendSV_Handler(void);
-__attribute__((weak, alias("Default_Handler"))) void SysTick_Handler(void);
+void reset_handler(void);
+__attribute__((weak, alias("default_handler"))) void nmi_handler(void);
+__attribute__((weak, alias("default_handler"))) void hard_fault_handler(void);
+__attribute__((weak, alias("default_handler"))) void mem_manage_handler(void);
+__attribute__((weak, alias("default_handler"))) void bus_handler(void);
+__attribute__((weak, alias("default_handler"))) void usage_handler(void);
+__attribute__((weak, alias("default_handler"))) void sv_call_handler(void);
+__attribute__((weak, alias("default_handler"))) void debug_monitor_handler(void);
+__attribute__((weak, alias("default_handler"))) void pend_sv_handler(void);
+__attribute__((weak, alias("default_handler"))) void sys_tick_handler(void);
 
-__attribute__((weak, alias("Default_Handler"))) void POWER_CLOCK_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void RADIO_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void UARTE0_UART0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void NFCT_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void GPIOTE_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SAADC_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TIMER0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TIMER1_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TIMER2_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void RTC0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TEMP_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void RNG_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void ECB_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void CCM_AAR_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void WDT_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void RTC1_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void QDEC_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void COMP_LPCOMP_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI0_EGU0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI1_EGU1_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI2_EGU2_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI3_EGU3_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI4_EGU4_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SWI5_EGU5_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TIMER3_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void TIMER4_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void PWM0_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void PDM_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void MWU_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void PWM1_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void PWM2_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void SPIM2_SPIS2_SPI2_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void RTC2_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void I2S_IRQHandler(void);
-__attribute__((weak, alias("Default_Handler"))) void FPU_IRQHandler(void);
-// __attribute__((weak, alias("Default_Handler"))) void UARTE1_IRQHandler(void);
+__attribute__((weak, alias("default_handler"))) void power_clock_handler(void);
+__attribute__((weak, alias("default_handler"))) void radio_handler(void);
+__attribute__((weak, alias("default_handler"))) void uarte0_uart0_handler(void);
+__attribute__((weak, alias("default_handler"))) void spim0_spis0_twim0_twis0_spi0_twi0_handler(void);
+__attribute__((weak, alias("default_handler"))) void spim1_spis1_twim1_twis1_spi1_twi1_handler(void);
+__attribute__((weak, alias("default_handler"))) void nfct_handler(void);
+__attribute__((weak, alias("default_handler"))) void gpiote_handler(void);
+__attribute__((weak, alias("default_handler"))) void saadc_handler(void);
+__attribute__((weak, alias("default_handler"))) void timer0_handler(void);
+__attribute__((weak, alias("default_handler"))) void timer1_handler(void);
+__attribute__((weak, alias("default_handler"))) void timer2_handler(void);
+__attribute__((weak, alias("default_handler"))) void rtc0_handler(void);
+__attribute__((weak, alias("default_handler"))) void temp_handler(void);
+__attribute__((weak, alias("default_handler"))) void rng_handler(void);
+__attribute__((weak, alias("default_handler"))) void ecb_handler(void);
+__attribute__((weak, alias("default_handler"))) void ccm_aar_handler(void);
+__attribute__((weak, alias("default_handler"))) void wdt_handler(void);
+__attribute__((weak, alias("default_handler"))) void rtc1_handler(void);
+__attribute__((weak, alias("default_handler"))) void qdec_handler(void);
+__attribute__((weak, alias("default_handler"))) void comp_lpcomp_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi0_egu0_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi1_egu1_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi2_egu2_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi3_egu3_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi4_egu4_handler(void);
+__attribute__((weak, alias("default_handler"))) void swi5_egu5_handler(void);
+__attribute__((weak, alias("default_handler"))) void timer3_handler(void);
+__attribute__((weak, alias("default_handler"))) void timer4_handler(void);
+__attribute__((weak, alias("default_handler"))) void pwm0_handler(void);
+__attribute__((weak, alias("default_handler"))) void pdm_handler(void);
+__attribute__((weak, alias("default_handler"))) void mwu_handler(void);
+__attribute__((weak, alias("default_handler"))) void pwm1_handler(void);
+__attribute__((weak, alias("default_handler"))) void pwm2_handler(void);
+__attribute__((weak, alias("default_handler"))) void spim2_spis2_spi2_handler(void);
+__attribute__((weak, alias("default_handler"))) void rtc2_handler(void);
+__attribute__((weak, alias("default_handler"))) void i2s_handler(void);
+__attribute__((weak, alias("default_handler"))) void fpu_handler(void);
+// __attribute__((weak, alias("default_handler"))) void uarte1_handler(void);
 
 __attribute__((section(".isr_vector"))) uint32_t vectors[] = {
     (uint32_t)&_sstack,
-    (uint32_t)&Reset_Handler,
-    (uint32_t)&NMI_Handler,
-    (uint32_t)&HardFault_Handler,
-    (uint32_t)&MemManage_Handler,
-    (uint32_t)&Bus_Handler,
-    (uint32_t)&Usage_Handler,
+    (uint32_t)&reset_handler,
+    (uint32_t)&nmi_handler,
+    (uint32_t)&hard_fault_handler,
+    (uint32_t)&mem_manage_handler,
+    (uint32_t)&bus_handler,
+    (uint32_t)&usage_handler,
     0,
     0,
     0,
     0,
-    (uint32_t)&SVCall_Handler,
-    (uint32_t)&DebugMonitor_Handler,
+    (uint32_t)&sv_call_handler,
+    (uint32_t)&debug_monitor_handler,
     0,
-    (uint32_t)&PendSV_Handler,
-    (uint32_t)&SysTick_Handler,
+    (uint32_t)&pend_sv_handler,
+    (uint32_t)&sys_tick_handler,
 
     // External Interrupts
-    (uint32_t)&POWER_CLOCK_IRQHandler,
-    (uint32_t)&RADIO_IRQHandler,
-    (uint32_t)&UARTE0_UART0_IRQHandler,
-    (uint32_t)&SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler,
-    (uint32_t)&SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler,
-    (uint32_t)&NFCT_IRQHandler,
-    (uint32_t)&GPIOTE_IRQHandler,
-    (uint32_t)&SAADC_IRQHandler,
-    (uint32_t)&TIMER0_IRQHandler,
-    (uint32_t)&TIMER1_IRQHandler,
-    (uint32_t)&TIMER2_IRQHandler,
-    (uint32_t)&RTC0_IRQHandler,
-    (uint32_t)&TEMP_IRQHandler,
-    (uint32_t)&RNG_IRQHandler,
-    (uint32_t)&ECB_IRQHandler,
-    (uint32_t)&CCM_AAR_IRQHandler,
-    (uint32_t)&WDT_IRQHandler,
-    (uint32_t)&RTC1_IRQHandler,
-    (uint32_t)&QDEC_IRQHandler,
-    (uint32_t)&COMP_LPCOMP_IRQHandler,
-    (uint32_t)&SWI0_EGU0_IRQHandler,
-    (uint32_t)&SWI1_EGU1_IRQHandler,
-    (uint32_t)&SWI2_EGU2_IRQHandler,
-    (uint32_t)&SWI3_EGU3_IRQHandler,
-    (uint32_t)&SWI4_EGU4_IRQHandler,
-    (uint32_t)&SWI5_EGU5_IRQHandler,
-    (uint32_t)&TIMER3_IRQHandler,
-    (uint32_t)&TIMER4_IRQHandler,
-    (uint32_t)&PWM0_IRQHandler,
-    (uint32_t)&PDM_IRQHandler,
+    (uint32_t)&power_clock_handler,
+    (uint32_t)&radio_handler,
+    (uint32_t)&uarte0_uart0_handler,
+    (uint32_t)&spim0_spis0_twim0_twis0_spi0_twi0_handler,
+    (uint32_t)&spim1_spis1_twim1_twis1_spi1_twi1_handler,
+    (uint32_t)&nfct_handler,
+    (uint32_t)&gpiote_handler,
+    (uint32_t)&saadc_handler,
+    (uint32_t)&timer0_handler,
+    (uint32_t)&timer1_handler,
+    (uint32_t)&timer2_handler,
+    (uint32_t)&rtc0_handler,
+    (uint32_t)&temp_handler,
+    (uint32_t)&rng_handler,
+    (uint32_t)&ecb_handler,
+    (uint32_t)&ccm_aar_handler,
+    (uint32_t)&wdt_handler,
+    (uint32_t)&rtc1_handler,
+    (uint32_t)&qdec_handler,
+    (uint32_t)&comp_lpcomp_handler,
+    (uint32_t)&swi0_egu0_handler,
+    (uint32_t)&swi1_egu1_handler,
+    (uint32_t)&swi2_egu2_handler,
+    (uint32_t)&swi3_egu3_handler,
+    (uint32_t)&swi4_egu4_handler,
+    (uint32_t)&swi5_egu5_handler,
+    (uint32_t)&timer3_handler,
+    (uint32_t)&timer4_handler,
+    (uint32_t)&pwm0_handler,
+    (uint32_t)&pdm_handler,
     0,
     0,
-    (uint32_t)&MWU_IRQHandler,
-    (uint32_t)&PWM1_IRQHandler,
-    (uint32_t)&PWM2_IRQHandler,
-    (uint32_t)&SPIM2_SPIS2_SPI2_IRQHandler,
-    (uint32_t)&RTC2_IRQHandler,
-    (uint32_t)&I2S_IRQHandler,
-    (uint32_t)&FPU_IRQHandler,
+    (uint32_t)&mwu_handler,
+    (uint32_t)&pwm1_handler,
+    (uint32_t)&pwm2_handler,
+    (uint32_t)&spim2_spis2_spi2_handler,
+    (uint32_t)&rtc2_handler,
+    (uint32_t)&i2s_handler,
+    (uint32_t)&fpu_handler,
     0,
-    // (uint32_t)&UARTE1_IRQHandler,
+    // (uint32_t)&uarte1_handler,
 
 };
 
-void Reset_Handler(void) {
+void reset_handler(void) {
   // Copy .data to SRAM
   uint32_t size = &_edata - &_sdata;
 
@@ -149,7 +148,7 @@ void Reset_Handler(void) {
     ;
 }
 
-void Default_Handler(void) {
+void default_handler(void) {
   while (1)
     ;
 }
