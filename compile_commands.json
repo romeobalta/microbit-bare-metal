@@ -15,7 +15,6 @@
    "-Wextra",
    "-Werror",
    "-Iinclude",
-   "-Iexternal/libopencm3/include",
    "src/main.c",
    "-o",
    "build/obj/main.o"
@@ -38,7 +37,6 @@
    "-Wextra",
    "-Werror",
    "-Iinclude",
-   "-Iexternal/libopencm3/include",
    "src/startup.c",
    "-o",
    "build/obj/startup.o"
@@ -61,7 +59,6 @@
    "-Wextra",
    "-Werror",
    "-Iinclude",
-   "-Iexternal/libopencm3/include",
    "src/gpio.c",
    "-o",
    "build/obj/gpio.o"

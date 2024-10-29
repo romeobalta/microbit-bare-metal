@@ -16,22 +16,26 @@ BIN_FOLDER    := $(BUILD_FOLDER)/bin
 
 TARGET        := $(BIN_FOLDER)/$(TARGET)
 
-# Libraries
-OPENCM3_DIR   := external/libopencm3
-INC_FOLDER    := include\
-									$(OPENCM3_DIR)/include
+# Compiler
+INC_FOLDER    := include
+LDLIBS        := -lc -lgcc -lnosys
+
+LDSCRIPT      := microbit_ls.ld
+
+# If USE_LIBOPENCM3 is defined, include the libopencm3 Makefile
+ifdef USE_LIBOPENCM3
+  OPENCM3_DIR   := external/libopencm3
+	INC_FOLDER    += $(OPENCM3_DIR)/include
+	LDLIBS        += -L$(OPENCM3_DIR)/lib -lopencm3_nrf52
+  LDSCRIPT      := microbit_libopencm3_ls.ld
+endif
+
 INCLUDES      := $(addprefix -I, $(INC_FOLDER))
 
-LIBNAME       := opencm3_nrf52
-LDLIBS        := -L$(OPENCM3_DIR)/lib -l$(LIBNAME) -lc -lgcc -lnosys
-
-# Tools
 WARNINGS      := -Wall -Wextra -Werror
 CC            := arm-none-eabi-gcc
 CFLAGS        := $(ARCH_FLAGS) -std=gnu11 -O0 -c $(WARNINGS) $(INCLUDES)
 
-LDSCRIPT      := microbit_ls.ld
-# LDSCRIPT      := microbit_libopencm3_ls.ld
 LD            := arm-none-eabi-gcc
 LDFLAGS       := $(ARCH_FLAGS) -nostartfiles -T $(LDSCRIPT) -Wl,-Map=$(TARGET).map
 
