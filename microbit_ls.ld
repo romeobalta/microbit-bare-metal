@@ -1,4 +1,4 @@
-ENTRY(Reset_Handler)
+ENTRY(reset_handler)
 
 MEMORY
 {

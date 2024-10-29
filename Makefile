@@ -44,7 +44,8 @@ OBJCOPY       := arm-none-eabi-objcopy
 # Sources
 SRCS          := \
 								 main.c\
-								 gpio.c
+									gpio.c\
+									tick.c
 SRCS           += startup.c
 
 OBJS          := $(SRCS:.c=.o)
@@ -76,8 +77,12 @@ clean:
 flash: $(TARGET).hex
 	cp $< /Volumes/MICROBIT/
 
+build_and_flash:
+	$(MAKE) all
+	$(MAKE) flash
+
 re:
 	$(MAKE) clean
 	$(MAKE) all
 
-.PHONY: all clean re flash
+.PHONY: all clean re flash build_and_flash
