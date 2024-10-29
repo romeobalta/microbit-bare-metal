@@ -38,9 +38,9 @@
 #define GPIO30 (1 << 30)
 #define GPIO31 (1 << 31)
 
-void set_pin_as_output(uint32_t pin);
+void gpio_mode_output(uint32_t pin);
 void turn_on_pin(uint32_t pins);
 void turn_off_pin(uint32_t pins);
-void toggle_pin(uint32_t pins);
+void gpio_toggle(uint32_t pins);
 
 #endif
