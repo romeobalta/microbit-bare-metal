@@ -5,6 +5,8 @@
 
 #define GPIO_BASE (0x50000000UL)
 #define GPIO_OUT (GPIO_BASE + 0x504)
+#define GPIO_IN (GPIO_BASE + 0x510)
+#define GPIO_CNF (GPIO_BASE + 0x700)
 #define GPIO0 (1 << 0)
 #define GPIO1 (1 << 1)
 #define GPIO2 (1 << 2)
@@ -38,9 +40,11 @@
 #define GPIO30 (1 << 30)
 #define GPIO31 (1 << 31)
 
-void gpio_mode_output(uint32_t pin);
-void turn_on_pin(uint32_t pins);
-void turn_off_pin(uint32_t pins);
-void gpio_toggle(uint32_t pins);
+void gpio_mode_output(uint32_t pins);
+void gpio_mode_input(uint32_t pins);
+void gpio_pin_on(uint32_t pins);
+void gpio_pin_off(uint32_t pins);
+void gpio_toggle_pin(uint32_t pins);
+uint32_t gpio_read(uint32_t pins);
 
 #endif
